@@ -34,6 +34,7 @@
         }
     },
     "variables": {
+        "imageName": "myCustomImage",
         "vmNamePrefix": "myIPv6VM",
         "nicNamePrefix": "IPv6Nic",
         "availabilitySetName": "myIPv6AvSet",
@@ -61,7 +62,7 @@
         {
             "type": "Microsoft.Compute/images",
             "apiVersion": "2016-04-30-preview",
-            "name": "xiaqin",
+            "name": "[variables('imageName')]",
             "location": "[resourceGroup().location]",
             "properties": {
                 "storageProfile": {
@@ -322,7 +323,7 @@
                 },
                 "storageProfile": {
                     "imageReference": {
-                        "id": "[resourceId('Microsoft.Compute/images', 'xiaqin')]"
+                        "id": "[resourceId('Microsoft.Compute/images', variables('imageName'))]"
                     }
                 },
                 "networkProfile": {
