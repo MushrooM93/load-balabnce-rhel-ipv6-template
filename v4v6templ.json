@@ -2,6 +2,12 @@
     "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "osDiskVhdUri": {
+            "type": "string",
+            "metadata": {
+                "description": "Uri of the your user image"
+            }
+        },
         "adminUsername": {
             "type": "string",
             "metadata": {
@@ -26,7 +32,7 @@
                 "description": "DNS prefix for IPv6 IP Address of the load balancer. It must be lowercase and match the regex: ^[a-z][a-z0-9-]{1,61}[a-z0-9]$."
             }
         }
-        },
+    },
     "variables": {
         "vmNamePrefix": "myIPv6VM",
         "nicNamePrefix": "IPv6Nic",
@@ -62,7 +68,7 @@
                     "osDisk": {
                         "osType": "Linux",
                         "osState": "Generalized",
-                        "blobUri": "https://xiaoqin.blob.core.windows.net/vhds/xiaqin20180801175230.vhd",
+                        "blobUri": "[parameters('osDiskVhdUri')]",
                         "storageAccountType": "Standard_LRS"
                     }
                 }
